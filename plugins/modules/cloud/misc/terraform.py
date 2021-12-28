@@ -494,6 +494,8 @@ def main():
         # checks out to decide if changes were made during execution
         if ' 0 added, 0 changed' not in out and not state == "absent" or ' 0 destroyed' not in out:
             changed = True
+    else:
+        changed = needs_application
 
     outputs_command = [command[0], 'output', '-no-color', '-json'] + _state_args(state_file)
     rc, outputs_text, outputs_err = module.run_command(outputs_command, cwd=project_path)
